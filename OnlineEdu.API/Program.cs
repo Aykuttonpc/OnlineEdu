@@ -1,9 +1,17 @@
 using Microsoft.EntityFrameworkCore;
+using OnlineEdu.Businnes.Abstract;
+using OnlineEdu.Businnes.Concrete;
+using OnlineEdu.DataAcces.Abstract;
 using OnlineEdu.DataAcces.Context;
+using OnlineEdu.DataAcces.Repositories;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
 builder.Services.AddDbContext<OnlineEduContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
