@@ -10,7 +10,7 @@ namespace OnlineEdu.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BannersControllers(IGenericService<Banner> _bannerService, IMapper _mapper) : ControllerBase
+    public class BannersController(IGenericService<Banner> _bannerService, IMapper _mapper) : ControllerBase
     {
         [HttpGet]
         public IActionResult Get()
