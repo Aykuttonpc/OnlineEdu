@@ -12,7 +12,7 @@ namespace OnlineEdu.DTO.DTOs.BlogCategoryDtos
     {
         public int BlogCategoryId { get; set; }
         public string Name { get; set; }
-        public List<ResultBlogDto> Blogs { get; set; }
+        
 
     }
 }

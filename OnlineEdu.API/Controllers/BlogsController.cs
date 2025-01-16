@@ -45,7 +45,7 @@ namespace OnlineEdu.API.Controllers
         {
             var value = _mapper.Map<Blog>(updateBlogDto);
             _blogService.TUpdate(value);
-            return Ok("Hakkımızda alanı güncellendi");
+            return Ok("blog alanı güncellendi");
         }
 
     }
