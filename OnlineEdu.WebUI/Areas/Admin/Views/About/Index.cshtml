@@ -39,11 +39,11 @@
                 <td>@item.Item4</td>
                     <td>
                         
-                            <a asp-action="UpdateAbout" asp-controller="About" asp-area="Admin"  class="btn btn-outline-danger" >Sil</a>
-                            <a asp-action="UpdateAbout" asp-controller="About" asp-area="Admin"  class="btn btn-outline-info" >Güncelle</a>
+                            <a asp-action="DeleteAbout" asp-controller="About" asp-area="Admin" asp-route-id="@item.AboutId" class="btn btn-outline-danger" >Sil</a>
+                                <a asp-action="UpdateAbout" asp-controller="About" asp-area="Admin" asp-route-id="@item.AboutId" class="btn btn-outline-info" >Güncelle</a>
                         </td>
 
-</tr>
+</tr>   
 }
 
 </table>

@@ -1,0 +1,33 @@
+﻿@model UpdateAboutDto
+@{
+    ViewData["Title"] = "Hakkında Güncelleme Sayfası";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<form method="post">
+    <input asp-for="AboutId" type="hidden" />
+    <label>Açıklama</label>
+    <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+    <br />
+    <label>Resim Url 1</label>
+    <input asp-for="ImageUrl1" class="form-control" />
+    <br />
+    <label>Resim Url 2</label>
+    <input asp-for="ImageUrl2" class="form-control" />
+    <br />
+    <label>Madde 1</label>
+    <input asp-for="Item1" class="form-control" />
+    <br />
+    <label>Madde 2</label>
+    <input asp-for="Item2" class="form-control" />
+    <br />
+    <label>Madde 3</label>
+    <input asp-for="Item3" class="form-control" />
+    <br />
+    <label>Madde 4</label>
+    <input asp-for="Item4" class="form-control" />
+    <br />
+    <button type="submit" class="btn btn-outline-primary">Kaydet</button>
+
+</form>
+
+
