@@ -10,8 +10,9 @@ namespace OnlineEdu.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContacsController(IGenericService<Contact> _contactService , IMapper _mapper) : ControllerBase
+    public class ContactsController(IGenericService<Contact> _contactService , IMapper _mapper) : ControllerBase
     {
+      
         [HttpGet]
         public IActionResult Get()
         {

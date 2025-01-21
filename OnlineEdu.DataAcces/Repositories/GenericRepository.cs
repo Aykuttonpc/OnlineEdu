@@ -65,7 +65,7 @@ namespace OnlineEdu.DataAcces.Repositories
 
         public List<T> GetList()
         {
-           return Table.ToList();
+            return Table.ToList();
 
         }
 

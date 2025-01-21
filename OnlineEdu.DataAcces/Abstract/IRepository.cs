@@ -9,7 +9,7 @@ namespace OnlineEdu.DataAcces.Abstract
 {
     public interface IRepository <T> where T : class
     {
-        List <T> GetList ();
+        List<T> GetList();
 
         T GetByFilter(Expression<Func<T, bool>> predicate);
 
