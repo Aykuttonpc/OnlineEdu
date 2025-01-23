@@ -1,26 +1,28 @@
-﻿ @model CreateCourseCategoryDto
+﻿@model UpdateCourseCategoryDto
 @{
-    ViewData["Title"] = "Yeni Kurs Kategorisi Ekleme Sayfası";
+    ViewData["Title"] = "UpdateCourseCategory";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <form method="post">
+    <input asp-for="CourseCategoryId" type="hidden" />
     <label>Kurs Kategori Adı</label>
     <input asp-for="CategoryName" class="form-control" />
     <br />
     <label>Açıklama</label>
-    <textarea asp-for="Description" class="form-control" rows="3"></textarea> 
+    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
     <br />
     <label>İkon</label>
     <input type="text" asp-for="Icon" class="form-control" />
     <br />
     <label>Ana Sayfada Gösterilsin</label><input asp-for="IsShown" type="checkbox" class="form-check" />
     <br />
-    <button class="btn btn-outline-primary">Kaydet </button>
+    <button class="btn btn-outline-primary">Güncelle </button>
 
 
-     
+
 
 
 </form>
+
 

@@ -29,7 +29,7 @@
                     <tr>
 
                         <th>@count</th>
-
+                          
                             <td>@item.CategoryName</td>
                                 
                                 <td>@item.Description</td>
@@ -38,19 +38,19 @@
 
                                         <td>
 
-                                                <button  onclick="deleteCourseCategory(@item.CategoryId)" class="btn btn-outline-danger" >Sil</button>
-                                                    <a asp-action="UpdateCourseCategory" asp-controller="CourseCategory" asp-area="Admin" asp-route-id="@item.CategoryId" class="btn btn-outline-info" >Güncelle</a>
+                                                <button  onclick="deleteCourseCategory(@item.CourseCategoryId)" class="btn btn-outline-danger" >Sil</button>
+                <a asp-action="UpdateCourseCategory" asp-controller="CourseCategory" asp-area="Admin" asp-route-id="@item.CourseCategoryId" class="btn btn-outline-info">Güncelle</a>
                                                  
                                             </td>
-            <th>
-                <a asp-action="ShowOnHome" asp-controller="CourseCategory" asp-area="Admin" asp-route-id="@item.CategoryId" class="btn btn-outline-success"> Göster</a>
-                <a asp-action="DontShowOnHome" asp-controller="CourseCategory" asp-area="Admin" asp-route-id="@item.CategoryId" class="btn btn-outline-secondary"> Gösterme</a>
-            </th>
+            <td>
+                <a asp-action="ShowOnHome" asp-controller="CourseCategory" asp-area="Admin" asp-route-id="@item.CourseCategoryId" class="btn btn-outline-success"> Göster</a>
+                <a asp-action="DontShowOnHome" asp-controller="CourseCategory" asp-area="Admin" asp-route-id="@item.CourseCategoryId" class="btn btn-outline-secondary"> Gösterme</a>
+            </td>
 
                     </tr>
     }
 
-</table>
+</table>    
 
 <br />
 <a asp-action="CreateCourseCategory" asp-controller="CourseCategory" asp-area="Admin" class="btn btn-outline-primary">Yeni kurs kategorisi  Ekle</a>

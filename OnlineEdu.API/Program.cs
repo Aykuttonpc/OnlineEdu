@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using OnlineEdu.API.Extensions;
 using OnlineEdu.Businnes.Abstract;
 using OnlineEdu.Businnes.Concrete;
 using OnlineEdu.DataAcces.Abstract;
@@ -15,11 +16,13 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
+        builder.Services.AddServiceExtensions();
+
         builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-        builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
-        builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
-        builder.Services.AddScoped<IBlogRepository, BlogRepository>();
-        builder.Services.AddScoped<IBlogService, BlogManager>();
+      
+
+
+
         builder.Services.AddDbContext<OnlineEduContext>(options =>
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));

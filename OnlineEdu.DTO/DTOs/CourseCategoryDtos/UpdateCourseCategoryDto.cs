@@ -9,7 +9,7 @@ namespace OnlineEdu.DTO.DTOs.CourseCategoryDtos
 {
     public class UpdateCourseCategoryDto
     {
-        public int CategoryId { get; set; }
+        public int CourseCategoryId { get; set; }
         public string CategoryName { get; set; }
         public string Icon { get; set; }
         public string Description { get; set; }
