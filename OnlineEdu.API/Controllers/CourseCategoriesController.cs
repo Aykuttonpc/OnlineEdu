@@ -64,5 +64,12 @@ namespace OnlineEdu.API.Controllers
             _courseCategoryServices.TDontShowOnHome(id);
             return Ok("Kurs kategori alanı anasayfada gösterilmedi");
         }
+
+        [HttpGet("GetActiveCategories")]
+        public IActionResult GetActiveCategories()
+        {
+            var values = _courseCategoryServices.TGetFilteredList(I => I.IsShown== true);
+            return Ok(values);
+        }
     }
 }

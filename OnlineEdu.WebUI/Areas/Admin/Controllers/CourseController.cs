@@ -81,5 +81,7 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
             await _client.GetAsync("courses/DontShowOnHome/" + id);
             return RedirectToAction("Index");
         }
+
+      
     }
 }

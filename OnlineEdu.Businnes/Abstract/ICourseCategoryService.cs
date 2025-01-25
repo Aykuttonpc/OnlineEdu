@@ -12,5 +12,7 @@ namespace OnlineEdu.Businnes.Abstract
 
        void TShowOnHome(int CourseCategoryId);
        void TDontShowOnHome(int CourseCategoryId);
+
+
     }
 }

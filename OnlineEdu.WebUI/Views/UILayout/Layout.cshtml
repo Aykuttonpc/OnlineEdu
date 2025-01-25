@@ -2,6 +2,9 @@
 @{
     Layout = null;
 }
+
+
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -65,8 +68,8 @@
                                 </div>
                                 <div class="header-info-right">
                                     <ul>
-                                        <li><a href="#"><i class="ti-user"></i>Giriş Yap</a></li>
-                                        <li><a href="#"><i class="ti-lock"></i>Kayıt Ol</a></li>
+                                        <li><a href="#"><i class="ti-user"></i>Login</a></li>
+                                        <li><a href="#"><i class="ti-lock"></i>Register</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -88,22 +91,26 @@
                             <div class="main-menu d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="/Home/Index">Ana Safya</a></li>
-                                        <li><a href="about.html">Hakkımızda</a></li>
-                                        <li><a href="courses.html">Kurslar</a></li>
-                                        <li><a href="instructor.html">Eğitmenler</a></li>
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="about.html">About</a></li>
+                                        <li><a href="courses.html">Courses</a></li>
+                                        <li><a href="instructor.html">Instructors</a></li>
                                         <li>
                                             <a href="blog.html">Blog</a>
-                                            
+                                            <ul class="submenu">
+                                                <li><a href="blog.html">Blog</a></li>
+                                                <li><a href="blog_details.html">Blog Details</a></li>
+                                                <li><a href="elements.html">Element</a></li>
+                                            </ul>
                                         </li>
-                                        <li><a href="contact.html">İletişim</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
                             <!-- Header-btn -->
                             <div class="header-search d-none d-lg-block">
                                 <form action="#" class="form-box f-right ">
-                                    <input type="text" name="Search" placeholder="Kursları Ara">
+                                    <input type="text" name="Search" placeholder="Search Courses">
                                     <div class="search-icon">
                                         <i class="fas fa-search special-tag"></i>
                                     </div>
@@ -121,7 +128,7 @@
         <!-- Header End -->
     </header>
     <main>
-       @RenderBody()    
+        @RenderBody()
     </main>
     <footer>
         <!--? Footer Start-->
