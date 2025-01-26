@@ -22,6 +22,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\login-form-07\.DS_Store" />
+    <None Include="wwwroot\login-form-07\css\.DS_Store" />
+    <None Include="wwwroot\login-form-07\fonts\.DS_Store" />
+    <None Include="wwwroot\login-form-07\images\.DS_Store" />
+    <None Include="wwwroot\login-form-07\scss\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OnlineEdu.DataAcces\OnlineEdu.DataAcces.csproj" />
   </ItemGroup>
 
