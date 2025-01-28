@@ -9,5 +9,6 @@ namespace OnlineEdu.Entity.Entities
 {
     public class AppRole:IdentityRole<int>
     {
+
     }
 }
