@@ -50,19 +50,48 @@ namespace OnlineEdu.WebUI.Services.UserServices
             throw new NotImplementedException();
         }
 
-        public Task<bool> LoginAsync(UserLoginDto userLoginDto)
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<bool> LogOutAsync()
         {
             throw new NotImplementedException();
         }
 
-        Task<string> IUserService.LoginAsync(UserLoginDto userLoginDto)
+        async Task<string> IUserService.LoginAsync(UserLoginDto userLoginDto)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByEmailAsync(userLoginDto.Email);
+            if (user == null)
+            {
+                return null;
+            }
+            var result = await _signInManager.PasswordSignInAsync(user, userLoginDto.Password, false, false);
+            if (!result.Succeeded)
+            {
+                return null;
+            }
+            else
+            {
+                var IsAdmin = await _userManager.IsInRoleAsync(user, "Admin");
+                if (IsAdmin)
+                {
+                    return "Admin";
+
+                }
+                var IsTeACHER = await _userManager.IsInRoleAsync(user, "Teacher");
+                if (!IsTeACHER)
+                {
+                    return "Teacher";
+                }
+                var IsStudent = await _userManager.IsInRoleAsync(user, "Student");
+                if (IsStudent)
+                {
+                    return "Student";
+
+                }
+                return null;
+
+            }
+
+
         }
 
         public async Task<List<AppUser>> GetAllUsersAsync()
