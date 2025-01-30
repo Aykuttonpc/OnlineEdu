@@ -1,4 +1,5 @@
-﻿using OnlineEdu.DataAcces.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineEdu.DataAcces.Abstract;
 using OnlineEdu.DataAcces.Context;
 using OnlineEdu.DataAcces.Repositories;
 using OnlineEdu.Entity.Entities;
@@ -23,6 +24,16 @@ namespace OnlineEdu.DataAcces.Concrete
             value.IsShown = false;
             _context.SaveChanges();
 
+        }
+
+        public List<Course> GetAllCoursesWithCategories()
+        {
+           return  _context.Courses.Include( x => x.CourseCategory).ToList();
+        }
+
+        public List<Course> GetCoursesByTeacherId(int id)
+        {
+           return _context.Courses.Include(x =>x.CourseCategory).Where(x =>x.AppUserId == id).ToList();
         }
 
         public void ShowOnHome(int id)

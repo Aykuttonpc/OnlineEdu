@@ -11,5 +11,7 @@ namespace OnlineEdu.Businnes.Abstract
     {
         void TShowOnHome(int id);
         void TDontShowOnHome(int id);
+        List<Course> TGetAllCoursesWithCategories();
+        List<Course> TGetCoursesByTeacherId(int id);
     }
 }

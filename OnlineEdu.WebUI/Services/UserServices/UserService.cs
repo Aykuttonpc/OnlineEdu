@@ -37,7 +37,15 @@ namespace OnlineEdu.WebUI.Services.UserServices
             }
 
             // Kullanıcıyı oluşturma
-            return await _userManager.CreateAsync(user, userRegisterDto.Password);
+             var result =  await _userManager.CreateAsync(user, userRegisterDto.Password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, "Student");
+                return result;
+            }
+            return result;
+;
+
         }
 
         public Task<bool> AssignRoleAsync(List <AssignRoleDto> assignRoleDto)
@@ -63,35 +71,29 @@ namespace OnlineEdu.WebUI.Services.UserServices
             {
                 return null;
             }
+
             var result = await _signInManager.PasswordSignInAsync(user, userLoginDto.Password, false, false);
             if (!result.Succeeded)
             {
                 return null;
             }
-            else
+
+            // Check roles sequentially
+            if (await _userManager.IsInRoleAsync(user, "Admin"))
             {
-                var IsAdmin = await _userManager.IsInRoleAsync(user, "Admin");
-                if (IsAdmin)
-                {
-                    return "Admin";
-
-                }
-                var IsTeACHER = await _userManager.IsInRoleAsync(user, "Teacher");
-                if (!IsTeACHER)
-                {
-                    return "Teacher";
-                }
-                var IsStudent = await _userManager.IsInRoleAsync(user, "Student");
-                if (IsStudent)
-                {
-                    return "Student";
-
-                }
-                return null;
-
+                return "Admin";
+            }
+            else if (await _userManager.IsInRoleAsync(user, "Teacher"))
+            {
+                return "Teacher";
+            }
+            else if (await _userManager.IsInRoleAsync(user, "Student"))
+            {
+                return "Student";
             }
 
-
+            // Fallback if no role matches
+            return null;
         }
 
         public async Task<List<AppUser>> GetAllUsersAsync()

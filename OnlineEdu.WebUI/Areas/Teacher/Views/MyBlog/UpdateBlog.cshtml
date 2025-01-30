@@ -1,8 +1,10 @@
-﻿@model CreateBlogDto
+﻿@model UpdateBlogDto
 @{
-    ViewData["Title"] = "Yeni Blog Oluştur";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Blog Güncelleme Sayfası";
+    Layout = "~/Areas/Teacher/Views/TeacherLayout/Index.cshtml";
 }
+
+
 
 <form method="post">
     <div class="form-group">
@@ -31,5 +33,6 @@
         <span asp-validation-for="Content" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <button type="submit" class="btn btn-primary">Güncelle</button>
 </form>
+

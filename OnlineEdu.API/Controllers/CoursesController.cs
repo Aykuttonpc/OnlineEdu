@@ -10,13 +10,14 @@ namespace OnlineEdu.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CoursesController (ICourseService _courseService,IMapper _mapper) : ControllerBase
+    public class CoursesController(ICourseService _courseService, IMapper _mapper) : ControllerBase
     {
 
         [HttpGet]
         public IActionResult Get()
         {
-            var values = _courseService.TGetList();
+            var values = _courseService.TGetAllCoursesWithCategories();
+            var courses = _mapper.Map<List<ResultCourseDto>>(values);   
             return Ok(values);
         }
         [HttpGet("{id}")]
@@ -63,12 +64,19 @@ namespace OnlineEdu.API.Controllers
         }
 
         [HttpGet("GetActiveCourses")]
-        public  IActionResult GetActiveCourses()
+        public IActionResult GetActiveCourses()
         {
-            var values = _courseService.TGetFilteredList(x =>x.IsShown == true);
+            var values = _courseService.TGetFilteredList(x => x.IsShown == true);
             return Ok(values);
 
 
+        }
+        [HttpGet("GetCoursesByTeacherId/{id}")]
+        public  IActionResult GetCoursesByTeacherId(int id)
+        {
+            var values = _courseService.TGetCoursesByTeacherId(id);
+            var mappedValues = _mapper.Map<List<ResultCourseDto>>(values);
+            return Ok(mappedValues);
         }
 
     }

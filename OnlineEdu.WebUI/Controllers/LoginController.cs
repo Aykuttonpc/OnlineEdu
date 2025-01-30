@@ -17,40 +17,25 @@ namespace OnlineEdu.WebUI.Controllers
         public async Task<IActionResult> SignIn(UserLoginDto _userLoginDto)
         {
             var userRole = await _userService.LoginAsync(_userLoginDto);
+
             if (userRole == "Admin")
             {
-
                 return RedirectToAction("Index", "About", new { area = "Admin" });
-
+            }
+            else if (userRole == "Student")
+            {
+                return RedirectToAction("Index", "CourseRegister", new { area = "Student" });
+            }
+            else if (userRole == "Teacher")
+            {
+                return RedirectToAction("Index", "MyCourse", new { area = "Teacher" });
             }
             
-            if(userRole == "Teacher")
-            {
-
-                return RedirectToAction("Index", "MyCourse", new { area = "Teacher" });
-
-            }
-
-            if (userRole == "Student")
-            {
-
-                return RedirectToAction("Index", "CourseRegister", new { area = "Student" });
-
-            }
-
             else
             {
-
                 ModelState.AddModelError("", "Email veya Şifre Hatalı");
-
                 return View();
             }
-
-
-
-
-
-
         }
     }
     

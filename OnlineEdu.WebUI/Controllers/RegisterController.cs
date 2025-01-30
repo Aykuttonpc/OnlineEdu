@@ -26,7 +26,7 @@ namespace OnlineEdu.WebUI.Controllers
                 }
                 return View();
             }
-            return RedirectToAction("Index", "Login"); // Add a return statement for successful registration
+            return RedirectToAction("SignIn", "Login"); // Add a return statement for successful registration
         }
     }
 }

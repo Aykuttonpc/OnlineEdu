@@ -49,5 +49,12 @@ namespace OnlineEdu.API.Controllers
             return Ok("blog alanı güncellendi");
         }
 
+        [HttpGet("GetBlogByWriterId/{id}")]
+        public IActionResult GetBlogByWriterId(int id)
+        {
+            var values = _blogService.TGetFilteredList(x => x.WriterId == id);
+            var mappedValues = _mapper.Map<List<Blog>>(values);
+            return Ok(mappedValues);
+        }
     }
 }
