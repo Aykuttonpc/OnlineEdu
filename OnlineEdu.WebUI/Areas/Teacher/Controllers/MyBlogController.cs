@@ -70,5 +70,12 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
             return RedirectToAction("Index");
                 
         }
+
+        public async Task<IActionResult> deleteMyBlog(int id)
+        {
+            await _client.DeleteAsync($"blogs/{id}");
+            return RedirectToAction("Index");
+
+        }
     }
 }

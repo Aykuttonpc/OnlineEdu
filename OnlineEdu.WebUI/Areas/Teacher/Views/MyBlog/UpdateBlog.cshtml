@@ -5,9 +5,13 @@
 }
 
 
-
 <form method="post">
+
+    <input type="hidden" asp-for ="BlogId" />
+    <input type="hidden" asp-for ="BlogDate" />
+    <input type="hidden" asp-for ="WriterId" />
     <div class="form-group">
+
         <label for="title">Blog Başlığı</label>
         <input type="text" asp-for="Title" class="form-control" />
         <span asp-validation-for="Title" class="text-danger"></span>
@@ -35,4 +39,6 @@
 
     <button type="submit" class="btn btn-primary">Güncelle</button>
 </form>
+
+
 
