@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineEdu.Businnes.Abstract;
 using OnlineEdu.DTO.DTOs.TeacherSocialDtos;
@@ -8,10 +9,10 @@ namespace OnlineEdu.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TeacherSocialsController(IGenericService<TeacherSocial> _teacherSocialService, IMapper _mapper) : Controller
+    public class TeacherSocialsController(IGenericService<TeacherSocial> _teacherSocialService, IMapper _mapper) : ControllerBase
     {
 
-        [HttpGet("byTeacherId/{id}") ]
+        [HttpGet("byTeacherId/{id}")]
         public IActionResult GetSocialByTeacherId(int id)
         {
             var values = _teacherSocialService.TGetFilteredList(x => x.TeacherId == id);
@@ -48,4 +49,5 @@ namespace OnlineEdu.API.Controllers
         }
     }
 }
-}
+
+

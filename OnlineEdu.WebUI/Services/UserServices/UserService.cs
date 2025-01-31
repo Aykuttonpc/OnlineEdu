@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.UserDtos;
@@ -10,13 +11,15 @@ namespace OnlineEdu.WebUI.Services.UserServices
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<AppRole> _roleManager;
+        private readonly IMapper _mapper;
 
         // Constructor Injection
-        public UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<AppRole> roleManager)
+        public UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<AppRole> roleManager, IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _mapper = mapper;
         }
 
         public async Task<IdentityResult> CreateUserAsync(UserRegisterDto userRegisterDto)
@@ -27,7 +30,6 @@ namespace OnlineEdu.WebUI.Services.UserServices
                 Email = userRegisterDto.Email,
                 FirstName = userRegisterDto.FirstName,
                 LastName = userRegisterDto.LastName,
-               
             };
 
             // Şifre doğrulaması
@@ -37,18 +39,16 @@ namespace OnlineEdu.WebUI.Services.UserServices
             }
 
             // Kullanıcıyı oluşturma
-             var result =  await _userManager.CreateAsync(user, userRegisterDto.Password);
+            var result = await _userManager.CreateAsync(user, userRegisterDto.Password);
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "Student");
                 return result;
             }
             return result;
-;
-
         }
 
-        public Task<bool> AssignRoleAsync(List <AssignRoleDto> assignRoleDto)
+        public Task<bool> AssignRoleAsync(List<AssignRoleDto> assignRoleDto)
         {
             throw new NotImplementedException();
         }
@@ -57,7 +57,6 @@ namespace OnlineEdu.WebUI.Services.UserServices
         {
             throw new NotImplementedException();
         }
-
 
         public Task<bool> LogOutAsync()
         {
@@ -98,12 +97,25 @@ namespace OnlineEdu.WebUI.Services.UserServices
 
         public async Task<List<AppUser>> GetAllUsersAsync()
         {
-            return await  _userManager.Users.ToListAsync();
+            return await _userManager.Users.ToListAsync();
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
-            return await _userManager.Users.FirstOrDefaultAsync( x => x.Id == id);
+            return await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<List<ResultUserDto>> Get4Teachers()
+        {
+            var teacherList = await _userManager.GetUsersInRoleAsync("Teacher");
+
+            if (teacherList == null || !teacherList.Any())
+            {
+                return new List<ResultUserDto>(); // Boş liste döndür
+            }
+
+            var values = teacherList.Take(4).ToList();
+            return _mapper.Map<List<ResultUserDto>>(values);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.TeacherSocialDtos;
@@ -6,13 +7,15 @@ using OnlineEdu.WebUI.Helpers;
 
 namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
 {
-    public class MyTeacherSocialController(UserManager<AppUser> _userManager) : Controller
+    [Authorize(Roles = "Teacher")]
+    [Area("Teacher")]
+    public class MySocialMediaController(UserManager<AppUser> _userManager) : Controller
     {
         private readonly HttpClient _client = HttpClientInstance.CreateClient();
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            var values = await _client.GetFromJsonAsync<List<ResultTeacherSocialDtos>>("teacherSocials/byTeacherId/" + user.Id);
+            var values = await _client.GetFromJsonAsync<List<ResultTeacherSocialDto>>("teacherSocials/byTeacherId/" + user.Id);
             return View(values);
 
         }
@@ -32,7 +35,7 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateTeacherSocial(CreateTeacherSocialDtos createTeacherSocialDto)
+        public async Task<IActionResult> CreateTeacherSocial(CreateTeacherSocialDto createTeacherSocialDto)
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             createTeacherSocialDto.TeacherId = user.Id;
@@ -44,12 +47,12 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
         public async Task<IActionResult> UpdateTeacherSocial(int id)
         {
 
-            var value = await _client.GetFromJsonAsync<UpdateTeacherSocialDtos>("TeacherSocials/" + id);
+            var value = await _client.GetFromJsonAsync<UpdateTeacherSocialDto>("TeacherSocials/" + id);
             return View(value);
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateTeacherSocial(UpdateTeacherSocialDtos updateTeacherSocialDto)
+        public async Task<IActionResult> UpdateTeacherSocial(UpdateTeacherSocialDto updateTeacherSocialDto)
         {
             
             await _client.PutAsJsonAsync("teacherSocials", updateTeacherSocialDto);

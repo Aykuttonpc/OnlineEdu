@@ -13,6 +13,8 @@
             Task<bool> AssignRoleAsync(List<AssignRoleDto> assignRoleDto);
             Task <List<AppUser>> GetAllUsersAsync();
             Task <AppUser> GetUserByIdAsync(int id);
+            Task<List<ResultUserDto>> Get4Teachers();
+
 
 
         }
