@@ -5,9 +5,9 @@ namespace OnlineEdu.WebUI.DTOs.CourseRegisterDtos
 {
     public class CreateCourseRegisterDto
     {
-        public AppUser AppUser { get; set; }
+      
         public int AppUserId { get; set; }
         public int CourseId { get; set; }
-        public ResultCourseDto Course { get; set; }
+       
     }
 }
