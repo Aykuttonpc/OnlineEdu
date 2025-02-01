@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿    using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Entity.Entities;
@@ -107,15 +107,9 @@ namespace OnlineEdu.WebUI.Services.UserServices
 
         public async Task<List<ResultUserDto>> Get4Teachers()
         {
-            var teacherList = await _userManager.GetUsersInRoleAsync("Teacher");
-
-            if (teacherList == null || !teacherList.Any())
-            {
-                return new List<ResultUserDto>(); // Boş liste döndür
-            }
-
-            var values = teacherList.Take(4).ToList();
-            return _mapper.Map<List<ResultUserDto>>(values);
+            var user = await _userManager.Users.Include(x => x.TeacherSocials).ToListAsync();
+            var teachers = user.Where(user => _userManager.IsInRoleAsync(user,"Teacher").Result).OrderByDescending(x => x.Id).Take(4).ToList();
+            return _mapper.Map<List<ResultUserDto>>(teachers);
         }
     }
 }
