@@ -48,6 +48,7 @@ namespace OnlineEdu.API.Controllers
             _contactService.TUpdate(value);
             return Ok("iletişim alanı güncellendi");
         }
+      
 
     }
 }

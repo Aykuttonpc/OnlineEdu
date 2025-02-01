@@ -19,6 +19,17 @@ namespace OnlineEdu.API.Controllers
             var blogs = _mapper.Map<List<ResultBlogDto>>(values);
             return Ok(values);
         }
+        [HttpGet("GetLast4Blogs")]
+        public IActionResult GetLast4Blogset()
+        {
+            var values = _blogService.TGetLastBlogsWithCategories();
+            var blogs = _mapper.Map<List<ResultBlogDto>>(values);
+            return Ok(blogs);
+        }
+
+
+
+
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -55,6 +66,13 @@ namespace OnlineEdu.API.Controllers
             var values = _blogService.TGetBlogsWithCategoriesByWriterId(id);
             var mappedValues = _mapper.Map<List<Blog>>(values);
             return Ok(mappedValues);
+        }
+
+        [HttpGet("GetBlogCount")]
+        public IActionResult GetBlogCount()
+        {
+            var blogCount = _blogService.TCount();
+            return Ok(blogCount);
         }
     }
 }

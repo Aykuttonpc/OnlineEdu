@@ -111,5 +111,12 @@ namespace OnlineEdu.WebUI.Services.UserServices
             var teachers = user.Where(user => _userManager.IsInRoleAsync(user,"Teacher").Result).OrderByDescending(x => x.Id).Take(4).ToList();
             return _mapper.Map<List<ResultUserDto>>(teachers);
         }
+
+        public async Task<int> GetTeacherCount()
+        {
+            var teachers = await _userManager.GetUsersInRoleAsync("Teacher");
+            return teachers.Count();
+
+        }
     }
 }
