@@ -12,5 +12,7 @@ namespace OnlineEdu.WebUI.ViewComponents.Home
             var values = await _client.GetFromJsonAsync<List<ResultCourseCategoryDto>>("coursecategories/GetActiveCategories");
             return View(values);
         }
+
+
     }
 }

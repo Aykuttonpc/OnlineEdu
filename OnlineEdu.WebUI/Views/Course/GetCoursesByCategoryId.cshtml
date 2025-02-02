@@ -1,0 +1,130 @@
+﻿@model List<ResultCourseDto>
+@{
+    ViewData["Title"] = "GetCoursesByCategoryId";
+    Layout = "~/Views/UILayout/Layout.cshtml";
+}
+
+<main>
+    <!-- Hero Start -->
+    <div class="slider-area">
+        <div class="slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 text-center">
+                          
+                                <h2>@ViewBag.category Kursları</h2>
+                            
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+    <!-- All Courses Section Start -->
+    <section class="all-course section-padding30">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="tab-content" id="nav-tabContent">
+                        <!-- Course List -->
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <div class="row">
+                                @foreach (var course in Model)
+                                {
+                                    <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
+                                        <!-- Single Course Card -->
+                                        <div class="single-course card h-100">
+                                            <div class="course-img">
+                                                <img src="@course.ImageUrl" class="card-img-top" alt="@course.CourseName">
+                                            </div>
+                                            <div class="course-caption card-body">
+                                                <div class="course-cap-top">
+                                                    <h4 class="card-title"><a href="#">@course.CourseName</a></h4>
+                                                </div>
+                                                <div class="course-cap-mid">
+                                                    <ul class="list-unstyled">
+                                                        <li><strong>Kategori:</strong> @course.CourseCategory.CategoryName</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="course-cap-bottom d-flex justify-content-between align-items-center">
+                                                    <span class="text-primary font-weight-bold">@course.Price ₺</span>
+                                                    <a href="#" class="btn btn-primary">Detaylar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- All Courses Section End -->
+</main>
+
+<style>
+    /* Custom Styles */
+    .single-course {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .single-course:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+    .course-img img {
+        width: 100%;
+        height: 200px; /* Fixed height for consistency */
+        object-fit: cover; /* Ensures images are scaled properly */
+    }
+
+    .course-caption {
+        padding: 15px;
+    }
+
+    .course-cap-top h4 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+    }
+
+    .course-cap-mid ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    .course-cap-mid li {
+        list-style: none;
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    .course-cap-bottom {
+        margin-top: 10px;
+    }
+
+        .course-cap-bottom span {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 5px 15px;
+        font-size: 0.9rem;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+</style>

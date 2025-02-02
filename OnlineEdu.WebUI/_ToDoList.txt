@@ -1,0 +1,43 @@
+
+
+
+
+- Blog detayý görüntüleme
+- Tüm Bloglar Sayfasý
+- Footer'da subscriber alaný
+- Footer'da social media alaný
+- Alta yararlý linkler bölümü
+- Ýletiþim Sayfasý
+
+
+-----Acces Denied Sayfasý-----
+-----404 Sayfasý-----
+
+
+-----Adnin-----
+
+- Dashboard
+- Aboneler Sayfasý
+- Kullanýcýlar kýsmýnda  kullanýcýlara ait roller görüntüleme
+- Siteye git alaný eklenecek
+- Çýkýþ yap ekle
+- Tüm Kullanýcýlar yanýsýra öðrenciler ve eðitmenler listeleme
+- Kurslar kýsmýnda eðitmen ismi getirme
+
+
+-----Eðitmen-----
+
+- Teacher dashboard ekle
+- Sidebara sosyal medya alaný eklenecek
+- Profile  bilgileri kýsmý
+- Çýkýþ yap 
+- Siteye git
+
+-----Student-----
+
+- Student dashboard tasarým
+- Profil bilgileri sayfasý
+- Course video Entity eklenip api endpointleri hazýrlanacak
+- Kurslara ait videolarýn listelenmesi
+- Çýkýþ yap 
+- Siteye git

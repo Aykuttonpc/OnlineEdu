@@ -6,15 +6,19 @@
     {
         public interface IUserService
         {
-            Task<IdentityResult> CreateUserAsync(UserRegisterDto userRegisterDto);
-            Task<string> LoginAsync(UserLoginDto userLoginDto);
-            Task<bool> LogOutAsync();
-            Task<bool> CreateRoleAsync(UserRoleDto userRoleDto);
-            Task<bool> AssignRoleAsync(List<AssignRoleDto> assignRoleDto);
-            Task <List<AppUser>> GetAllUsersAsync();
-            Task <AppUser> GetUserByIdAsync(int id);
-            Task<List<ResultUserDto>> Get4Teachers();
-            Task<int> GetTeacherCount();
+        Task<IdentityResult> CreateUserAsync(UserRegisterDto userRegisterDto);
+        Task<string> LoginAsync(UserLoginDto userLoginDto);
+        Task<bool> LogOutAsync();
+        Task<bool> CreateRoleAsync(UserRoleDto userRoleDto);
+        Task<bool> AssignRoleAsync(List<AssignRoleDto> assignRoleDto);
+        Task <List<AppUser>> GetAllUsersAsync();
+        Task <AppUser> GetUserByIdAsync(int id);
+        Task<List<ResultUserDto>> Get4Teachers();
+        Task<int> GetTeacherCount();
+        Task<List<ResultUserDto>> GetAllTeachers(); 
+        
+            
+
 
 
 
