@@ -16,6 +16,7 @@ namespace OnlineEdu.WebUI.ViewComponents.Blog
                                   {
                                       CategoryName = blogCategory.Name,
                                       BlogCount = blogCategory.Blogs.Count,
+                                      BlogCategoryId =blogCategory.BlogCategoryId,
                                   }).ToList();
             return View(blogCategories);
         }

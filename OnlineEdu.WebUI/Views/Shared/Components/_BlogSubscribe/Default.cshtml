@@ -2,15 +2,14 @@
 
 <aside class="single_sidebar_widget newsletter_widget">
     <h4 class="widget_title" style="color: #2d2d2d;">Abone Bülteni</h4>
-    <form asp-action="Subscribe" asp-controller="Blog">
-        <div class="form-group">
-            <input type="email" name="Email" class="form-control" onfocus="this.placeholder = ''"
-                   onblur="this.placeholder = 'Emailinizi yazın'" placeholder='Emailinizi yazın' required>
+    <form method="post" asp-action="Subscribe" asp-controller="Blog" class="form-group">
+        <input type="email" name="Email" class="form-control" placeholder=" Email adresinizi yazınız " required>
+        <div >
+            <button onclick="subscribe()"  class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn">
+                Abone Ol
+            </button>
         </div>
-        <button onclick="subscribe()" class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                type="submit">
-            Abone Ol
-        </button>
+        <div class="mt-10 info"></div>
     </form>
 </aside>
 

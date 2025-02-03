@@ -2,7 +2,7 @@
 
 
 
-- Blog detayý görüntüleme
+
 - Footer'da subscriber alaný
 - Footer'da social media alaný
 - Alta yararlý linkler bölümü

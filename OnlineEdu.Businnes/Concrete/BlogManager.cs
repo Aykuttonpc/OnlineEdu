@@ -37,5 +37,10 @@ namespace OnlineEdu.Businnes.Concrete
 
             return _blogRepository.GetLastBlogsWithCategories();
         }
+
+        public List<Blog> TGetBlogsByCategoryId(int id)
+        {
+           return _blogRepository.GetBlogsByCategoryId(id); 
+        }
     }
 }
