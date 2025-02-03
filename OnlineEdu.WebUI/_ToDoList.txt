@@ -3,7 +3,6 @@
 
 
 - Blog detayý görüntüleme
-- Tüm Bloglar Sayfasý
 - Footer'da subscriber alaný
 - Footer'da social media alaný
 - Alta yararlý linkler bölümü
