@@ -33,7 +33,7 @@ namespace OnlineEdu.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var value = _blogService.TGetById(id);
+            var value = _blogService.TGetBlogsWithCategory(id); 
             return Ok(value);
         }
         [HttpDelete("{id}")]
