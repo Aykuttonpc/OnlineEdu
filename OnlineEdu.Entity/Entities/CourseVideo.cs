@@ -10,7 +10,8 @@ namespace OnlineEdu.Entity.Entities
     {
         public int CourseVideoId { get; set; }
         public int CourseId { get; set; }
-        public  Course Course { get; set; }
+
+        public  virtual Course Course { get; set; }
         public string VideoUrl { get; set; }
         public int VideoNumber { get; set; }
     }
