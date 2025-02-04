@@ -9,15 +9,7 @@
 
 
 
------Adnin-----
 
-- Dashboard
-- Aboneler Sayfasý
-- Kullanýcýlar kýsmýnda  kullanýcýlara ait roller görüntüleme
-- Siteye git alaný eklenecek
-- Çýkýþ yap ekle
-- Tüm Kullanýcýlar yanýsýra öðrenciler ve eðitmenler listeleme
-- Kurslar kýsmýnda eðitmen ismi getirme
 
 
 -----Eðitmen-----
@@ -25,8 +17,8 @@
 - Teacher dashboard ekle
 - Sidebara sosyal medya alaný eklenecek
 - Profile  bilgileri kýsmý
-- Çýkýþ yap 
-- Siteye git
+
+
 
 -----Student-----
 
@@ -34,5 +26,3 @@
 - Profil bilgileri sayfasý
 - Course video Entity eklenip api endpointleri hazýrlanacak
 - Kurslara ait videolarýn listelenmesi
-- Çýkýþ yap 
-- Siteye git

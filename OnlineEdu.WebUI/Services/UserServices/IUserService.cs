@@ -8,7 +8,7 @@
         {
         Task<IdentityResult> CreateUserAsync(UserRegisterDto userRegisterDto);
         Task<string> LoginAsync(UserLoginDto userLoginDto);
-        Task<bool> LogOutAsync();
+        Task LogOutAsync();
         Task<bool> CreateRoleAsync(UserRoleDto userRoleDto);
         Task<bool> AssignRoleAsync(List<AssignRoleDto> assignRoleDto);
         Task <List<AppUser>> GetAllUsersAsync();

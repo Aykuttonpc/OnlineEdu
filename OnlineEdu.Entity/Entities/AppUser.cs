@@ -17,5 +17,6 @@ namespace OnlineEdu.Entity.Entities
         public List<Blog> Blogs { get; set; }
         public List<TeacherSocial> TeacherSocials { get; set; }
 
+
     }
 }

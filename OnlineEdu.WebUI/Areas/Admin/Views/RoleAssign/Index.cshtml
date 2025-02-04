@@ -1,5 +1,4 @@
-﻿@using OnlineEdu.Entity.Entities
-@model List<AppUser>
+﻿@model List<UserViewModel>
 @{
     ViewData["Title"] = "Kullanıcı Listesi";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -15,6 +14,7 @@
             <th>#</th>
             <th>Ad Soyad</th>
             <th>Kullanıcı Adı</th>
+            <th>Rolleri</th>
             <th></th>
         </tr>
     </thead>
@@ -25,8 +25,15 @@
 
             <tr>
                 <td>@count</td>
-                <td>@item.FirstName @item.LastName</td>
+                <td>@item.NameSurname</td>
                 <td>@item.UserName</td>
+               
+                <td>
+
+                    @foreach(var role in item.Roles)
+                    {
+                        <span class="badge bg-dark text-white">@role</span>
+                    }
                 <td>
                     <a asp-action="AssignRole" asp-controller="RoleAssign" asp-area="Admin" asp-route-id="@item.Id" class="btn btn-outline-info">Rol Ata</a>
                 </td>

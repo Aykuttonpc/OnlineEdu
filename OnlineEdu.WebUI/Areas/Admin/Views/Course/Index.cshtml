@@ -19,7 +19,9 @@
         <th>Kurs  Adı</th>
         <th>Fiyat</th>
         <th>Kategori</th>
+        <th>Eğitmen</th>
         <th>Gösterilme  Durumu</th>
+        
 
         <th></th>
         <th>Ana Sayfada</th>
@@ -36,7 +38,8 @@
             <td>@item.CourseName</td>
 
             <td>@item.Price</td>
-            <td>@item.CourseCategoryId</td>
+            <td>@item.CourseCategory.CategoryName</td>
+            <td>@item.AppUser.FirstName @item.AppUser.LastName</td>
             <td>@(item.IsShown ? "Gösteriliyor" : "Gösterilmiyor")</td>
 
 

@@ -61,9 +61,10 @@ namespace OnlineEdu.WebUI.Services.UserServices
             throw new NotImplementedException();
         }
 
-        public Task<bool> LogOutAsync()
+        public async Task LogOutAsync()
         {
-            throw new NotImplementedException();
+            await _signInManager.SignOutAsync();
+            
         }
 
         async Task<string> IUserService.LoginAsync(UserLoginDto userLoginDto)

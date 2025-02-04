@@ -1,0 +1,51 @@
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using OnlineEdu.Businnes.Abstract;
+using OnlineEdu.DTO.DTOs.CourseVideoDtos;
+using OnlineEdu.Entity.Entities;
+
+namespace OnlineEdu.API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CourseVideosController(IGenericService<CourseVideo>_courseVideoService,IMapper _mapper) : ControllerBase
+    {
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var values = _courseVideoService.TGetList();
+            return Ok(values);
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var value = _courseVideoService.TGetById(id);
+            return Ok(value);
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+
+            _courseVideoService.TDelete(id);
+            return Ok("Kurs Videosu  Silindi");
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateCourseVideoDto createCourseVideoDto)
+        {
+            var newValue = _mapper.Map<CourseVideo>(createCourseVideoDto);
+            _courseVideoService.Tcreate(newValue);
+            return Ok("Kurs Videosu oluşturuldu");
+
+        }
+        [HttpPut]
+        public IActionResult Update(UpdateCourseVideoDto updateCourseVideoDto)
+        {
+            var value = _mapper.Map<CourseVideo>(updateCourseVideoDto);
+            _courseVideoService.TUpdate(value);
+            return Ok("Kurs Videosu güncellendi");
+        }
+
+    }
+}

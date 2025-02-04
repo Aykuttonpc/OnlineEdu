@@ -23,12 +23,13 @@ namespace OnlineEdu.DataAcces.Context
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<CourseCategory> CourseCategories { get; set; }
-        public DbSet<Message> messages { get; set; }
+        public DbSet<Message> Messages { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<CourseRegister> CourseRegisters { get; set; }
         public DbSet<TeacherSocial> TeacherSocials { get; set; }
+        public DbSet<CourseVideo> CourseVideos { get; set; }
 
 
 
