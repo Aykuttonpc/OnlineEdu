@@ -26,7 +26,7 @@
     </tr>
     @foreach (var item in Model)
     {
-        count++;
+         count++;
 
         <tr>
 
@@ -40,8 +40,8 @@
 
             <td>
 
-                <button onclick="deleteTeacherCourse(@item.CourseId)" class="btn btn-outline-danger">Sil</button>
-                <a asp-action="UpdateCourse" asp-controller="MyCourse" asp-area="Teacher" asp-route-id="@item.CourseId" class="btn btn-outline-info">Güncelle</a>
+
+                <a asp-action="CourseVideos" asp-controller="CourseRegister" asp-area="Student" asp-route-id="@item.CourseId" class="btn btn-outline-info">Kurs Videoları</a>
 
             </td>
 
@@ -55,32 +55,6 @@
 <a asp-action="RegisterCourse" asp-controller="CourseRegister" asp-area="Student" class="btn btn-outline-primary">Yeni Kursa Kaydol</a>
 
 
-
-<script>
-
-            function deleteStudentCourse(id) {
-
-
-
-                                    Swal.fire({
-      title: "Silmek İstediğinize Emin misiniz?",
-      text: "Bu işlemi geri alamazsınız!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Evet Sil!",
-      cancelButtonText:"İptal"
-    }).then((result) => {
-      if (result.isConfirmed) {
-             window.location.href = "/Student/CourseRegister/DeleteCourseRegister/" + id;
-      }
-    });
-
-             }
-
-
-</script>
 
 
 

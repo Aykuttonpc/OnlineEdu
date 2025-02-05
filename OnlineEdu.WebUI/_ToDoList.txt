@@ -24,5 +24,5 @@
 
 - Student dashboard tasarým
 - Profil bilgileri sayfasý
-- Course video Entity eklenip api endpointleri hazýrlanacak
+
 - Kurslara ait videolarýn listelenmesi
