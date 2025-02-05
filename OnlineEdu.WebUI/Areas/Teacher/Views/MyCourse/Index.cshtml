@@ -17,8 +17,7 @@
         <tr>
             <th>#</th>
             <th>Resim</th>
-            <th>Kurs  Adı</th>
-            <th>Fiyat</th>
+            <th>Kurs  Adı</th>    
             <th>Kategori</th>
     
 
@@ -34,7 +33,6 @@
                 <th>@count</th>
                 <td><img src="@item.ImageUrl" style="width: 75px; height: 75px;" /></td>
                 <td>@item.CourseName</td>
-                <td>@item.Price</td>
                 <td>@item.CourseCategory.CategoryName</td>
             
 
@@ -43,6 +41,7 @@
 
                     <button onclick="deleteTeacherCourse(@item.CourseId)" class="btn btn-outline-danger">Sil</button>
                     <a asp-action="UpdateCourse" asp-controller="MyCourse" asp-area="Teacher" asp-route-id="@item.CourseId" class="btn btn-outline-info">Güncelle</a>
+                    <a asp-action="CourseVideos" asp-controller="MyCourse" asp-area="Teacher" asp-route-id="@item.CourseId" class="btn btn-outline-info">Kurs Videoları</a>
 
                 </td>
             

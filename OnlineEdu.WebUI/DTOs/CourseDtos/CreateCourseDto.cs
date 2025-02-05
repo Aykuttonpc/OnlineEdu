@@ -18,5 +18,6 @@ namespace OnlineEdu.WebUI.DTOs.CourseDtos
         public bool IsShown { get; set; }
         public int AppUserId { get; set; }
 
+
     }
 }

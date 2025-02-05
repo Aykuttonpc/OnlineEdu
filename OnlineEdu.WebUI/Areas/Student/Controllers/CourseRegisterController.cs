@@ -17,6 +17,7 @@ namespace OnlineEdu.WebUI.Areas.Student.Controllers
         private readonly HttpClient _client =HttpClientInstance.CreateClient();
         public async Task<IActionResult> Index()
         {
+
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             var values = await _client.GetFromJsonAsync<List<ResultCourseRegisterDto>>("courseRegisters/GetMyCourses/" + user.Id);
             return View(values);
@@ -32,6 +33,7 @@ namespace OnlineEdu.WebUI.Areas.Student.Controllers
                                             {
                                                 Text=x.CourseName,
                                                 Value=x.CourseId.ToString()
+                                                
 
                                             }).ToList();
             ViewBag.Course = courses;

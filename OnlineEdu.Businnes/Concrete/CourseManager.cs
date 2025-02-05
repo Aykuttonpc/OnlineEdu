@@ -30,7 +30,7 @@ namespace OnlineEdu.Businnes.Concrete
 
         }
 
-        public List<Course> TGetAllCoursesWithCategories(Expression<Func<Course, bool>> filter = null)
+        public List<Course> TGetAllCoursesWithCategories(Expression<Func<Course, bool>> filter )
         {
             return _courseRepository.GetAllCoursesWithCategories(filter);
         }
