@@ -34,7 +34,7 @@ namespace OnlineEdu.WebUI.Controllers
                 {
                     ModelState.AddModelError("", item.Description);
                 }
-                return View(userRegisterDto);
+                return View(userRegisterDto );
             }
             return RedirectToAction("SignIn", "Login"); // Add a return statement for successful registration
         }

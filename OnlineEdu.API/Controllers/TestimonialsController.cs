@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineEdu.Businnes.Abstract;
@@ -8,10 +9,12 @@ using OnlineEdu.Entity.Entities;
 
 namespace OnlineEdu.API.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class TestimonialsController (IGenericService<Testimonial> _testimonialService ,IMapper _mapper): ControllerBase
     {
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Get()
         {
@@ -46,6 +49,13 @@ namespace OnlineEdu.API.Controllers
             var value = _mapper.Map<Testimonial>(updateTestimonialDto);
             _testimonialService.TUpdate(value);
             return Ok("testimonial alanı güncellendi");
+        }
+        [AllowAnonymous]
+        [HttpGet("GetTestimoinalCount")]
+        public IActionResult GetTestimoinalCount()
+        {
+            var courseCount = _testimonialService.TCount();
+            return Ok(courseCount);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using OnlineEdu.DataAcces.Context;
 using OnlineEdu.Entity.Entities;
@@ -14,20 +15,23 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<OnlineEduContext>(opt =>
+
+
+
+builder.Services.AddHttpClient();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme ,opt =>
 {
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
+    opt.LoginPath = "/Login/SignIn";
+    opt.LogoutPath = "/Login/Logout";
+    opt.AccessDeniedPath = "/ErrorPage/AccessDenied";
+    opt.Cookie.SameSite = SameSiteMode.Strict;
+    opt.Cookie.HttpOnly = true;
+    opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    opt.Cookie.Name = "OnlineEduJwt";
 });
 
-builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<OnlineEduContext>().AddErrorDescriber<CustomErrorDescriber>();
-builder.Services.AddHttpClient();
-builder.Services.ConfigureApplicationCookie(cfg =>
-{
-    cfg.LoginPath = "/Login/SignIn";
-    cfg.LogoutPath = "/Login/Logout";
-    cfg.AccessDeniedPath = "/ErrorPage/AccessDenied";
-   
-});
+
 
 
 var app = builder.Build();

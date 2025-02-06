@@ -1,12 +1,14 @@
 ﻿    using AutoMapper;
-    using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using OnlineEdu.Businnes.Abstract;
     using OnlineEdu.DTO.DTOs.CourseRegisterDtos;
     using OnlineEdu.Entity.Entities;
 
-    namespace OnlineEdu.API.Controllers
-    {
+ namespace OnlineEdu.API.Controllers
+  {
+        [Authorize(Roles = "Admin, Student")]
         [Route("api/[controller]")]
         [ApiController]
         public class CourseRegistersController(ICourseRegisterService _courseRegisterService,IMapper _mapper) : ControllerBase
