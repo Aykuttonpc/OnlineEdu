@@ -14,8 +14,4 @@
     <ProjectReference Include="..\OnlineEdu.Entity\OnlineEdu.Entity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\UserDtos\" />
-  </ItemGroup>
-
 </Project>
