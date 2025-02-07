@@ -1,13 +1,11 @@
-﻿using OnlineEdu.WebUI.DTOs.TeacherSocialDtos;
+﻿using OnlineEdu.DTO.DTOs.TeacherSocialDtos;
 
-namespace OnlineEdu.WebUI.DTOs.UserDtos
+namespace OnlineEdu.DTO.DTOs.UserDtos
 {
     public class ResultUserDto
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string UsarName { get; set; }
-        public string Email { get; set; }
         public string? ImageUrl { get; set; }
         public List<ResultTeacherSocialDto> TeacherSocials { get; set; }
     }

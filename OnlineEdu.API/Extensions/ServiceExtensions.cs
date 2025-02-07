@@ -2,6 +2,8 @@
 using OnlineEdu.Businnes.Abstract;
 using OnlineEdu.Businnes.Concrete;
 using OnlineEdu.Businnes.Configurations;
+using OnlineEdu.Businness.Abstract;
+using OnlineEdu.Businness.Concrete;
 using OnlineEdu.DataAcces.Abstract;
 using OnlineEdu.DataAcces.Concrete;
 using OnlineEdu.DataAcces.Repositories;
@@ -28,6 +30,7 @@ namespace OnlineEdu.API.Extensions
 
             services.AddScoped<IBlogCategoryRepository,BlogCategoryRepository>();
             services.AddScoped<IBlogCategoryService, BlogCategoryManager>();
+            services.AddScoped<IUserService,UserService>();
 
             services.Configure<JwtTokenOptions>(configuration.GetSection("TokenOptions"));
 

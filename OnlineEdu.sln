@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEdu.Entity", "OnlineE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEdu.DataAcces", "OnlineEdu.DataAcces\OnlineEdu.DataAcces.csproj", "{4587B40F-B5EA-4BEF-B815-F8FAD33543E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEdu.Businnes", "OnlineEdu.Businnes\OnlineEdu.Businnes.csproj", "{0E854B78-B72B-40BB-B797-9BE40CA035E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEdu.Businness", "OnlineEdu.Businnes\OnlineEdu.Businness.csproj", "{0E854B78-B72B-40BB-B797-9BE40CA035E4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineEdu.DTO", "OnlineEdu.DTO\OnlineEdu.DTO.csproj", "{DC15F570-7519-4ABD-9184-08894D070617}"
 EndProject

@@ -1,26 +1,37 @@
-﻿    using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OnlineEdu.Businness.Abstract;
 using OnlineEdu.DataAcces.Context;
+using OnlineEdu.DTO.DTOs.UserDtos;
 using OnlineEdu.Entity.Entities;
-using OnlineEdu.WebUI.DTOs.UserDtos;
-using OnlineEdu.WebUI.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace OnlineEdu.WebUI.Services.UserServices
+namespace OnlineEdu.Businness.Concrete
 {
     public class UserService : IUserService
     {
-        private readonly HttpClient _client;
-   
+        private readonly OnlineEduContext _context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<AppRole> _roleManager;
+        private readonly IMapper _mapper;
 
         // Constructor Injection
-        public UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<AppRole> roleManager, IMapper mapper, OnlineEduContext context, HttpClient client)
+        public UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<AppRole> roleManager, IMapper mapper, OnlineEduContext context)
         {
-     
-            _client = client;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
+            _mapper = mapper;
+            _context = context;
         }
 
-        public async Task<IdentityResult> CreateUserAsync(UserRegisterDto userRegisterDto)
+        public async Task<IdentityResult> CreateUserAsync(RegisterDto userRegisterDto)
         {
             var user = new AppUser
             {
@@ -59,10 +70,10 @@ namespace OnlineEdu.WebUI.Services.UserServices
         public async Task LogOutAsync()
         {
             await _signInManager.SignOutAsync();
-            
+
         }
 
-        async Task<string> IUserService.LoginAsync(UserLoginDto userLoginDto)
+        async Task<string> IUserService.LoginAsync( LoginDto userLoginDto)
         {
             var user = await _userManager.FindByEmailAsync(userLoginDto.Email);
             if (user == null)
@@ -94,9 +105,9 @@ namespace OnlineEdu.WebUI.Services.UserServices
             return null;
         }
 
-        public async Task<List<UserViewModel>> GetAllUsersAsync()
+        public async Task<List<AppUser>> GetAllUsersAsync()
         {
-            return await _client.GetFromJsonAsync<List<UserViewModel>>("roleAssigns");
+            return await _userManager.Users.ToListAsync();
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
@@ -107,7 +118,7 @@ namespace OnlineEdu.WebUI.Services.UserServices
         public async Task<List<ResultUserDto>> Get4Teachers()
         {
             var user = await _userManager.Users.Include(x => x.TeacherSocials).ToListAsync();
-            var teachers = user.Where(user => _userManager.IsInRoleAsync(user,"Teacher").Result).OrderByDescending(x => x.Id).Take(4).ToList();
+            var teachers = user.Where(user => _userManager.IsInRoleAsync(user, "Teacher").Result).OrderByDescending(x => x.Id).Take(4).ToList();
             return _mapper.Map<List<ResultUserDto>>(teachers);
         }
 
@@ -124,13 +135,6 @@ namespace OnlineEdu.WebUI.Services.UserServices
             var users = await _userManager.Users.Include(x => x.TeacherSocials).ToListAsync();
             var teachers = users.Where(user => _userManager.IsInRoleAsync(user, "Teacher").Result).ToList();
             return _mapper.Map<List<ResultUserDto>>(teachers);
-
-        }
-
-        public async Task<List<AssignRoleDto>> GetUserForRoleAssign(int id)
-        {
-            return await _client.GetFromJsonAsync<List<AssignRoleDto>>("roleAssigns/" + id);
-
 
         }
     }

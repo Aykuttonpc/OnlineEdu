@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OnlineEdu.Businnes\OnlineEdu.Businnes.csproj" />
+    <ProjectReference Include="..\OnlineEdu.Businnes\OnlineEdu.Businness.csproj" />
     <ProjectReference Include="..\OnlineEdu.DTO\OnlineEdu.DTO.csproj" />
   </ItemGroup>
 
