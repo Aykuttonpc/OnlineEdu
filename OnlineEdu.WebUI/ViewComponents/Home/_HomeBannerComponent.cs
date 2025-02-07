@@ -7,7 +7,13 @@ namespace OnlineEdu.WebUI.ViewComponents.Home
     public class _HomeBannerComponent: ViewComponent
     {
 
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
+
+        public _HomeBannerComponent(IHttpClientFactory httpClientFactory)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
+
+        }
 
         public async  Task<IViewComponentResult> InvokeAsync()
         {

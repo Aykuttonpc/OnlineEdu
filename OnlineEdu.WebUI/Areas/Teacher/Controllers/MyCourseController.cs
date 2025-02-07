@@ -16,12 +16,13 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
     public class MyCourseController : Controller
     {
         private readonly ITokenService _tokenService;
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
 
-        public MyCourseController( ITokenService tokenService)
+        public MyCourseController(ITokenService tokenService, HttpClient client)
         {
-           
+
             _tokenService = tokenService;
+            _client = client;
         }
 
 

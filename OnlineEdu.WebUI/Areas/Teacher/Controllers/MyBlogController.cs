@@ -12,9 +12,17 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
 {
     [Authorize(Roles = "Teacher")]
     [Area("Teacher")]
-    public class MyBlogController(ITokenService _tokenService) : Controller
+    public class MyBlogController : Controller
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
+        private readonly TokenService _tokenService;
+
+        public MyBlogController(IHttpClientFactory httpClientFactory, TokenService tokenService)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
+            _tokenService = tokenService;
+        }
+
         public async  Task<IActionResult> Index()
         {
             var userId = _tokenService.GetUserId;

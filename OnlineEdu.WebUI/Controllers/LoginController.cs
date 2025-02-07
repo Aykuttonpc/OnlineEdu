@@ -14,7 +14,13 @@ namespace OnlineEdu.WebUI.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
+
+        public LoginController(IHttpClientFactory httpClientFactory)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
+
+        }
         public IActionResult SignIn()
         {
          return View();

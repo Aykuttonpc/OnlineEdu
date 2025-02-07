@@ -13,11 +13,13 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
     public class ContactController : Controller
     {
 
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
 
+        public ContactController(IHttpClientFactory httpClientFactory)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
 
-       
-
+        }
         public async Task<IActionResult> Index()
         {
             var values = await _client.GetFromJsonAsync<List<ResultContactDto>>("Contacts");

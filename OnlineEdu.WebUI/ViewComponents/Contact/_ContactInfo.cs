@@ -6,8 +6,14 @@ using OnlineEdu.WebUI.Helpers;
 namespace OnlineEdu.WebUI.ViewComponents.Contact
 {
     public class _ContactInfo :ViewComponent
-    { 
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+    {
+        private readonly HttpClient _client;
+
+        public _ContactInfo(IHttpClientFactory httpClientFactory)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
+
+        }
         public  async Task<IViewComponentResult> InvokeAsync()
         {
 

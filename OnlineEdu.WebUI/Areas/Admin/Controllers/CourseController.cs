@@ -12,6 +12,13 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
    
     public class CourseController : Controller
     {
+        private readonly HttpClient _client;
+
+        public CourseController(IHttpClientFactory httpClientFactory)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
+
+        }
 
 
         public async Task CourseCategoryDropDown()
@@ -27,7 +34,7 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
             ViewBag.courseCategories = courseCategories;
         }
 
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+       
         
         public async Task<IActionResult> Index()
         {

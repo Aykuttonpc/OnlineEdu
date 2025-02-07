@@ -6,9 +6,16 @@ namespace OnlineEdu.WebUI.ViewComponents.Blog
 {
     public class _BlogAllBlogs: ViewComponent
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
 
-        public  async Task<IViewComponentResult> InvokeAsync()
+        public _BlogAllBlogs(IHttpClientFactory httpClientFactory)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
+
+        }
+
+
+        public async Task<IViewComponentResult> InvokeAsync()
         {
 
             var values = await _client.GetFromJsonAsync<List<ResultBlogDto>>("blogs");

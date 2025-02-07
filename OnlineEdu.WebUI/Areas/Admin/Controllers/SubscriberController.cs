@@ -10,7 +10,13 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 
     public class SubscriberController : Controller
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
+
+        public SubscriberController(IHttpClientFactory httpClientFactory)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
+
+        }
         public  async Task<IActionResult> IndexAsync()
         {
             var values = await _client.GetFromJsonAsync<List<ResultSubscriberDto>>("subscribers");

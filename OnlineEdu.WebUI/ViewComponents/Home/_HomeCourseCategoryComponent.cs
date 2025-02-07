@@ -6,7 +6,13 @@ namespace OnlineEdu.WebUI.ViewComponents.Home
 {
     public class _HomeCourseCategoryComponent:ViewComponent
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
+
+        public _HomeCourseCategoryComponent(IHttpClientFactory httpClientFactory)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
+
+        }
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var values = await _client.GetFromJsonAsync<List<ResultCourseCategoryDto>>("coursecategories/GetActiveCategories");

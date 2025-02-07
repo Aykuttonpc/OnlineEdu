@@ -7,7 +7,14 @@ namespace OnlineEdu.WebUI.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly HttpClient _client  = HttpClientInstance.CreateClient();
+
+        private readonly HttpClient _client;
+
+        public BlogController(IHttpClientFactory httpClientFactory)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
+
+        }
         public IActionResult Index()
         {
             return View();

@@ -5,9 +5,16 @@ using OnlineEdu.WebUI.Services.UserServices;
 
 namespace OnlineEdu.WebUI.ViewComponents.Home
 {
-    public class _HomeCounterComponent(IUserService _userService):ViewComponent
+    public class _HomeCounterComponent:ViewComponent
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
+        private readonly IUserService _userService;
+
+        public _HomeCounterComponent(IHttpClientFactory httpClientFactory, IUserService userService)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
+            _userService = userService;
+        }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {

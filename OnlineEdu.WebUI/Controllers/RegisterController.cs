@@ -9,7 +9,13 @@ namespace OnlineEdu.WebUI.Controllers
 {
     public class RegisterController : Controller
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
+
+        public RegisterController(IHttpClientFactory httpClientFactory)
+        {
+            _client = httpClientFactory.CreateClient("EduClient");
+
+        }
 
 
         public IActionResult SignUp()
