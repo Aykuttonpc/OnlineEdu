@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineEdu.Businnes.Abstract;
@@ -8,13 +9,14 @@ using OnlineEdu.Entity.Entities;
 
 namespace OnlineEdu.API.Controllers
 {
+    [Authorize(Roles = "Admin, Teacher")]
     [Route("api/[controller]")]
     [ApiController]
     public class CourseCategoriesController(ICourseCategoryService _courseCategoryServices, IMapper _mapper) : ControllerBase
     {
 
 
-
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Get()
         {
@@ -66,12 +68,15 @@ namespace OnlineEdu.API.Controllers
             return Ok("Kurs kategori alanı anasayfada gösterilmedi");
         }
 
+        [AllowAnonymous]
         [HttpGet("GetActiveCategories")]
         public IActionResult GetActiveCategories()
         {
             var values = _courseCategoryServices.TGetFilteredList(I => I.IsShown== true);
             return Ok(values);
         }
+
+        [AllowAnonymous]
         [HttpGet("GetCourseCategoryCount")]
         public IActionResult GetCourseCategoryCount()
         {
