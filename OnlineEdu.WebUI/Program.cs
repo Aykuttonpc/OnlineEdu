@@ -31,7 +31,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
     opt.Cookie.Name = "OnlineEduJwt";
 
 });
-
+    
 
 var app = builder.Build();
 
