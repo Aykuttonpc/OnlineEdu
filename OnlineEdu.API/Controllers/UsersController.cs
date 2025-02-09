@@ -51,6 +51,20 @@ namespace OnlineEdu.API.Controllers
             return BadRequest();
 
         }
+        [HttpGet("TeacherList")]
+        public async Task<IActionResult> TeacherList()
+        {
+            var teachers = await _userManager.GetUsersInRoleAsync("Teacher");
+
+            return Ok(teachers);
+        }
+        [HttpGet("StudentList")]
+        public async Task<IActionResult> StudentList()
+        {
+            var students = await _userManager.GetUsersInRoleAsync("Students");
+
+            return Ok(students);
+        }
 
     }
 }
