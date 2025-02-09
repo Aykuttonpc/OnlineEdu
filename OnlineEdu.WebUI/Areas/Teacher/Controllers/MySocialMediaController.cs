@@ -12,12 +12,13 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
     [Area("Teacher")]
     public class MySocialMediaController : Controller
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
         private readonly ITokenService _tokenService;
 
-        public MySocialMediaController(ITokenService tokenService)
+        private readonly HttpClient _client;
+
+        public MySocialMediaController(IHttpClientFactory clientFactory)
         {
-            _tokenService = tokenService;
+            _client = clientFactory.CreateClient("EduClient");
         }
 
         public async Task<IActionResult> Index()

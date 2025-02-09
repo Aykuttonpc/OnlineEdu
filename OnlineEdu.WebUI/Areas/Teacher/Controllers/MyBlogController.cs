@@ -12,11 +12,17 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
 {
     [Authorize(Roles = "Teacher")]
     [Area("Teacher")]
-    public class MyBlogController(UserManager<AppUser> _userManager) : Controller
+    public class MyBlogController : Controller
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+ 
         private readonly ITokenService _tokenService;
 
+        private readonly HttpClient _client;
+
+        public MyBlogController(IHttpClientFactory clientFactory)
+        {
+            _client = clientFactory.CreateClient("EduClient");
+        }
 
         public async  Task<IActionResult> Index()
         {

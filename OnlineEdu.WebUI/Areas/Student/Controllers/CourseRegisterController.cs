@@ -16,8 +16,14 @@ namespace OnlineEdu.WebUI.Areas.Student.Controllers
     public class CourseRegisterController : Controller
     {
 
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
+        private readonly HttpClient _client;
         private readonly ITokenService _tokenService;
+
+        public CourseRegisterController(IHttpClientFactory clientFactory, ITokenService tokenService)
+        {
+            _client = clientFactory.CreateClient("EduClient");
+            _tokenService = tokenService;
+        }
 
         public CourseRegisterController(ITokenService tokenService)
         {
