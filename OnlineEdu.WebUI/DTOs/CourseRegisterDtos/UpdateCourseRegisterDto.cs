@@ -1,5 +1,4 @@
-﻿using OnlineEdu.Entity.Entities;
-using OnlineEdu.WebUI.DTOs.CourseDtos;
+﻿using OnlineEdu.WebUI.DTOs.CourseDtos;
 using OnlineEdu.WebUI.DTOs.UserDtos;
 
 namespace OnlineEdu.WebUI.DTOs.CourseRegisterDtos

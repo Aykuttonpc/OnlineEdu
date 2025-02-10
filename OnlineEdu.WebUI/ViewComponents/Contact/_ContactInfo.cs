@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OnlineEdu.WebUI.DTOs.ContactDtos;
-using OnlineEdu.WebUI.Helpers;
 
 namespace OnlineEdu.WebUI.ViewComponents.Contact
 {
@@ -9,7 +7,7 @@ namespace OnlineEdu.WebUI.ViewComponents.Contact
     {
         private readonly HttpClient _client;
 
-        public _BlogRecentBlogs(IHttpClientFactory clientFactory)
+        public _ContactInfo(IHttpClientFactory clientFactory)
         {
             _client = clientFactory.CreateClient("EduClient");
         }

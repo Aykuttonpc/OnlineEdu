@@ -1,19 +1,19 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineEdu.Businnes.Abstract;
-using OnlineEdu.DTO.DTOs.AboutDtos;
 using OnlineEdu.DTO.DTOs.BlogDtos;
 using OnlineEdu.Entity.Entities;
 
 namespace OnlineEdu.API.Controllers
 {
-    [Authorize(Roles = "Admin, Teacher")]
+    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Teacher")]
     [Route("api/[controller]")]
     [ApiController]
     public class BlogsController (IMapper _mapper ,IBlogService  _blogService) : ControllerBase 
     {
+    
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Get()

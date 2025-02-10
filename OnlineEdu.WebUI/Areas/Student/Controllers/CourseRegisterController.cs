@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.CourseDtos;
 using OnlineEdu.WebUI.DTOs.CourseRegisterDtos;
 using OnlineEdu.WebUI.DTOs.CourseVideoDtos;
-using OnlineEdu.WebUI.Helpers;
 using OnlineEdu.WebUI.Services.TokenServices;
 
 namespace OnlineEdu.WebUI.Areas.Student.Controllers
@@ -25,10 +22,7 @@ namespace OnlineEdu.WebUI.Areas.Student.Controllers
             _tokenService = tokenService;
         }
 
-        public CourseRegisterController(ITokenService tokenService)
-        {
-            _tokenService = tokenService;
-        }
+       
         public async Task<IActionResult> Index()
         {
 

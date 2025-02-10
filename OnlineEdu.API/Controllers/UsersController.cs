@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Businnes.Abstract;
 using OnlineEdu.Businnes.Concrete;
 using OnlineEdu.DTO.DTOs.UserDtos;
@@ -66,5 +67,13 @@ namespace OnlineEdu.API.Controllers
             return Ok(students);
         }
 
+        [HttpGet("Get4Teachers")]
+        public async Task<IActionResult> Get4Teachers()
+        {
+
+            var user = await _userManager.Users.Include(x => x.TeacherSocials).ToListAsync();
+            var teachers = user.Where(user => _userManager.IsInRoleAsync(user, "Teacher").Result).OrderByDescending(x => x.Id).Take(4).ToList();
+            return Ok(teachers);
+        }
     }
 }

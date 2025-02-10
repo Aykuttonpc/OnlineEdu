@@ -34,8 +34,4 @@
     <None Include="wwwroot\login-form-07\scss\.DS_Store" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\OnlineEdu.DataAcces\OnlineEdu.DataAcces.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.RoleDtos;
-using OnlineEdu.WebUI.Helpers;
-using OnlineEdu.WebUI.Services.RoleServices;
-using OnlineEdu.WebUI.Services.TokenServices;
 
 namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 {
@@ -38,7 +32,7 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateRole(CreateRoleDto createRoleDto)
         {
-            await _client.PostAsJsonAsync("roles",createRoleDto)
+            await _client.PostAsJsonAsync("roles", createRoleDto);
             return RedirectToAction("Index");
         }
 

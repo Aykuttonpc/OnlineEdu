@@ -11,6 +11,6 @@ namespace OnlineEdu.Businnes.Configurations
         public string Issuer { get; set; }
         public string Audience { get; set; }
         public string Key { get; set; }
-        public int ExpireToMinute { get; set; }
+        public int ExpireInMinute { get; set; }
     }
 }

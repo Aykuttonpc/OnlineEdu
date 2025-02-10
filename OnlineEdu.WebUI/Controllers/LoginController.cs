@@ -47,8 +47,8 @@ namespace OnlineEdu.WebUI.Controllers
                 var claimsIdentity = new ClaimsIdentity(claims,JwtBearerDefaults.AuthenticationScheme);
                 var authProps = new AuthenticationProperties
                 {
-                    ExpiresUtc=response.ExpireDate,
                     IsPersistent = true,
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddDays(30)
 
                 };
                 await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity),authProps);

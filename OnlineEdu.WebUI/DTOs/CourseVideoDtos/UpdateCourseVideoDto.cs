@@ -1,7 +1,4 @@
-﻿using OnlineEdu.Entity.Entities;
-using OnlineEdu.WebUI.DTOs.CourseDtos;
-
-namespace OnlineEdu.WebUI.DTOs.CourseVideoDtos
+﻿namespace OnlineEdu.WebUI.DTOs.CourseVideoDtos
 {
     public class UpdateCourseVideoDto
     {

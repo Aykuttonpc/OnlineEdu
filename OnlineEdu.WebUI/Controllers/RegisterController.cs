@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineEdu.WebUI.DTOs.UserDtos;
-using OnlineEdu.WebUI.Services.UserServices;
-using Microsoft.AspNetCore.Identity;
-using OnlineEdu.Entity.Entities;
-using OnlineEdu.WebUI.Helpers;
 
 namespace OnlineEdu.WebUI.Controllers
 {

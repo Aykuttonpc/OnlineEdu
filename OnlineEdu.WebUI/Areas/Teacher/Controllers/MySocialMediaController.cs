@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.TeacherSocialDtos;
-using OnlineEdu.WebUI.Helpers;
 using OnlineEdu.WebUI.Services.TokenServices;
 
 namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
@@ -16,9 +13,10 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
 
         private readonly HttpClient _client;
 
-        public MySocialMediaController(IHttpClientFactory clientFactory)
+        public MySocialMediaController(IHttpClientFactory clientFactory, ITokenService tokenService)
         {
             _client = clientFactory.CreateClient("EduClient");
+            _tokenService = tokenService;
         }
 
         public async Task<IActionResult> Index()

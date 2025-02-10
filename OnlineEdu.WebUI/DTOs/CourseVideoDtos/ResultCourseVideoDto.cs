@@ -1,5 +1,4 @@
-﻿using OnlineEdu.Entity.Entities;
-using OnlineEdu.WebUI.DTOs.CourseDtos;
+﻿using OnlineEdu.WebUI.DTOs.CourseDtos;
 
 namespace OnlineEdu.WebUI.DTOs.CourseVideoDtos
 {

@@ -17,13 +17,13 @@ namespace OnlineEdu.Businnes.Concrete
 {
     public class JwtService : IJwtService
     {
-        private readonly UserManager<AppUser> _userManager;
         private readonly JwtTokenOptions _tokenOptions;
+        private readonly UserManager<AppUser> _userManager;
 
-        public JwtService(UserManager<AppUser> userManager, IOptions<JwtTokenOptions> tokenOptions)
+        public JwtService(IOptions<JwtTokenOptions> tokenOptions, UserManager<AppUser> userManager)
         {
-            _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
-            _tokenOptions = tokenOptions.Value ?? throw new ArgumentNullException(nameof(tokenOptions));
+            _tokenOptions = tokenOptions.Value;
+            _userManager = userManager;
         }
 
         public async Task<LoginResponseDto> CreateTokenAsync(AppUser user)
@@ -49,7 +49,7 @@ namespace OnlineEdu.Businnes.Concrete
                 audience: _tokenOptions.Audience,
                 claims: claims,
                 notBefore: DateTime.UtcNow,
-                expires: DateTime.UtcNow.AddMinutes(_tokenOptions.ExpireToMinute),
+                expires: DateTime.UtcNow.AddMinutes(_tokenOptions.ExpireInMinute),
                 signingCredentials: new SigningCredentials(symnetricSecurityKey, SecurityAlgorithms.HmacSha256)
             );
 
@@ -57,7 +57,7 @@ namespace OnlineEdu.Businnes.Concrete
             var responseDto = new LoginResponseDto
             {
                 Token = handler.WriteToken(jwtSecurityToken),
-                ExprieDate = DateTime.UtcNow.AddMinutes(_tokenOptions.ExpireToMinute)
+                ExprieDate = DateTime.UtcNow.AddMinutes(_tokenOptions.ExpireInMinute)
             };
             return responseDto;
         }

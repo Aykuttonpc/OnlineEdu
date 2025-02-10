@@ -7,11 +7,12 @@ using OnlineEdu.DTO.DTOs.CourseRegisterDtos;
 using OnlineEdu.Entity.Entities;
 namespace OnlineEdu.API.Controllers
 {
-    [Authorize(Roles = "Admin, Teacher")]    
+    [Authorize(Roles = "Admin, Teacher, Student")]    
     [Route("api/[controller]")]
     [ApiController]
     public class CourseRegistersController(ICourseRegisterService _courseRegisterService,IMapper _mapper) : ControllerBase
     {
+        [AllowAnonymous]
         [HttpGet("GetMyCourses/{userId}")]
         public IActionResult GetMyCourses(int userId)
         {

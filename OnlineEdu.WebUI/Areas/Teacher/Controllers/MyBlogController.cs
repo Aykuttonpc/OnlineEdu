@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.BlogCategoryDtos;
 using OnlineEdu.WebUI.DTOs.BlogDtos;
-using OnlineEdu.WebUI.Helpers;
 using OnlineEdu.WebUI.Services.TokenServices;
 
 namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
@@ -14,43 +11,37 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
     [Area("Teacher")]
     public class MyBlogController : Controller
     {
- 
+        private readonly HttpClient _client;
         private readonly ITokenService _tokenService;
 
-        private readonly HttpClient _client;
-
-        public MyBlogController(IHttpClientFactory clientFactory)
+        public MyBlogController(IHttpClientFactory clientFactory, ITokenService tokenService)
         {
             _client = clientFactory.CreateClient("EduClient");
+            _tokenService = tokenService;
         }
-
-        public async  Task<IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             var userId = _tokenService.GetUserId;
             var values = await _client.GetFromJsonAsync<List<ResultBlogDto>>("blogs/GetBlogByWriterId/" + userId);
-
             return View(values);
         }
+
         public async Task BlogCategoryDropDownAsync()
         {
-            var CategoryList = await _client.GetFromJsonAsync<List<ResultBlogCategoryDto>>("blogCategories");
+            var categoryList = await _client.GetFromJsonAsync<List<ResultBlogCategoryDto>>("blogCategories");
 
-            // Kategorileri doğru şekilde ViewBag'e atadığınızdan emin olun
-            List<SelectListItem> categories = (from c in CategoryList
+            List<SelectListItem> categories = (from x in categoryList
                                                select new SelectListItem
                                                {
-                                                   Text = c.Name,
-                                                   Value = c.BlogCategoryId.ToString()
+                                                   Text = x.Name,
+                                                   Value = x.BlogCategoryId.ToString()
                                                }).ToList();
-
-            ViewBag.CategoryList = categories;
+            ViewBag.categories = categories;
         }
 
-        public async  Task<IActionResult> CreateBlog()
+        public async Task<IActionResult> CreateBlog()
         {
             await BlogCategoryDropDownAsync();
-
-
             return View();
         }
 
@@ -59,18 +50,15 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
         {
             var userId = _tokenService.GetUserId;
             createBlogDto.WriterId = userId;
-            await _client.PostAsJsonAsync("blogs",createBlogDto);
+            await _client.PostAsJsonAsync("blogs", createBlogDto);
             return RedirectToAction("Index");
-
         }
-
 
         public async Task<IActionResult> UpdateBlog(int id)
         {
             await BlogCategoryDropDownAsync();
             var value = await _client.GetFromJsonAsync<UpdateBlogDto>("blogs/" + id);
             return View(value);
-
         }
 
         [HttpPost]
@@ -78,14 +66,13 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
         {
             await _client.PutAsJsonAsync("blogs", updateBlogDto);
             return RedirectToAction("Index");
-                
         }
 
-        public async Task<IActionResult> deleteMyBlog(int id)
+        public async Task<IActionResult> DeleteBlog(int id)
         {
-            await _client.DeleteAsync($"blogs/{id}");
+            await _client.DeleteAsync("blogs/" + id);
             return RedirectToAction("Index");
-
         }
+
     }
 }

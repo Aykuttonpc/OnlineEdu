@@ -39,7 +39,7 @@ namespace OnlineEdu.API.Controllers
             foreach (var role in roles)
             {
                 var assignRole = new AssignRoleDto();
-
+                assignRole.UserId = user.Id;
                 assignRole.RoleId = role.Id;
                 assignRole.RoleName = role.Name;
                 assignRole.RoleExist = userRoles.Contains(role.Name);
@@ -52,7 +52,7 @@ namespace OnlineEdu.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AssignRole(List<AssignRoleDto> assignRoleList)
         {
-            int userId = int.Parse(_contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            int userId = assignRoleList.Select(x => x.UserId).FirstOrDefault();
 
             var user = await _userService.GetUserByIdAsync(userId);
                 foreach (var item in assignRoleList)

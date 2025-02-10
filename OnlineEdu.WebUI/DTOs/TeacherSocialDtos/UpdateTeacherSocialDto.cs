@@ -1,6 +1,4 @@
-﻿using OnlineEdu.Entity.Entities;
-
-namespace OnlineEdu.WebUI.DTOs.TeacherSocialDtos
+﻿namespace OnlineEdu.WebUI.DTOs.TeacherSocialDtos
 {
     public class UpdateTeacherSocialDto
     {

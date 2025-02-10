@@ -15,6 +15,7 @@ namespace OnlineEdu.API.Controllers
     public class BannersController(IGenericService<Banner> _bannerService, IMapper _mapper) : ControllerBase
     {
         [Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Get()
         {
