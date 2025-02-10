@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineEdu.WebUI.DTOs.MessagesDtos;
 using OnlineEdu.WebUI.Helpers;
+using OnlineEdu.WebUI.Services.UserServices;
 
 namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 {
@@ -14,12 +15,13 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 
 
         private readonly HttpClient _client;
+        private readonly IUserService _userService;
 
-        public MessageController(IHttpClientFactory clientFactory)
+        public MessageController(IHttpClientFactory clientFactory, IUserService userService)
         {
             _client = clientFactory.CreateClient("EduClient");
+            _userService = userService;
         }
-
 
         public async Task<IActionResult> Index()
         {

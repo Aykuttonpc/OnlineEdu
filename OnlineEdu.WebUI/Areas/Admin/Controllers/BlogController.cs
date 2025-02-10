@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineEdu.WebUI.DTOs.BlogCategoryDtos;
 using OnlineEdu.WebUI.DTOs.BlogDtos;
+using OnlineEdu.WebUI.Helpers;
 using OnlineEdu.WebUI.Services.TokenServices;
 
 namespace OnlineEdu.WebUI.Areas.Admin.Controllers
@@ -12,13 +13,13 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
     
     public class BlogController : Controller
     {
-        private readonly HttpClient _client;
+        private readonly HttpClient _client = HttpClientInstance.CreateClient();
         private readonly ITokenService _tokenService;
 
-        public BlogController(ITokenService tokenService,IHttpClientFactory clientFactory)
+        public BlogController(ITokenService tokenService, IHttpClientFactory clientFactory)
         {
-            _client = clientFactory.CreateClient();
-            _tokenService =tokenService;
+            _tokenService = tokenService;
+            _client = clientFactory.CreateClient("EduClient");
         }
 
         public async Task CategoryDropdown()
